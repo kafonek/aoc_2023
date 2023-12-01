@@ -6,7 +6,7 @@ fn main() {
     println!("Reading data from: {:?}", &path);
     let lines = read_lines(&path);
 
-    let re = Regex::new(r"\d").unwrap();
+    let re = Regex::new(r"\d").unwrap(); // match any single digit
 
     let mut extracted_digits: Vec<Vec<String>> = Vec::new();
     for line in &lines {
@@ -24,6 +24,7 @@ fn main() {
         combines.push(combine);
     }
 
+    // convert list of strings to list of i32
     let combines_n = combines
         .iter()
         .map(|s| s.parse::<i32>().unwrap())
