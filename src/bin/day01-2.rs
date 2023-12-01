@@ -32,7 +32,15 @@ fn main() {
 
     let mut extracted_digits: Vec<Vec<String>> = Vec::new();
     for line in &lines {
-        let matches: Vec<String> = re.find_iter(line).map(|c| c.as_str().to_owned()).collect();
+        let mut matches = Vec::new();
+        let mut start = 0;
+        while let Some(matched) = re.find(&line[start..]) {
+            let word_or_digit = matched.as_str();
+            start += matched.start() + 1;
+
+            let map_value = maps.get(word_or_digit).unwrap_or(&word_or_digit);
+            matches.push(map_value.to_string());
+        }
         extracted_digits.push(matches);
     }
 
