@@ -45,3 +45,9 @@ Rust solutions will be run as binaries. For day01 problem 1, the command will lo
 - `PROD=1 cargo run --bin day01-1` <-- read from `prod/` dataset and execute
 
 Optionally, `--release` can be added to build and run in release mode.
+
+# Problem Notes
+
+## Day 01
+ - Part 2 was quite gimmicky imo with its wrinkle that spelled-out numbers could overlap in letters, like "eightwo" would match 8 and 2. Creating a regex pattern like "one|two|three|..." and doing normal match-iteration didn't work because regex by default consumes the longest match. To get around that, used a hacky "find a match then start looking again from match start index + 1" approach.
+
