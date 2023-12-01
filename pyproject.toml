@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Kafonek <matt.kafonek@noteable.io>"]
 readme = "README.md"
-packages = [{include = "aoc_2023"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.10"
