@@ -2,8 +2,10 @@ use std::collections::HashMap;
 
 use aoc_2023::utils::{get_data_path, read_lines};
 use regex::Regex;
+use std::time::Instant;
 
 fn main() {
+    let now = Instant::now();
     let path = get_data_path();
     println!("Reading data from: {:?}", &path);
     let lines = read_lines(&path);
@@ -77,4 +79,5 @@ fn main() {
 
     let sum = combines_n.iter().sum::<i32>();
     println!("Sum: {}", sum);
+    println!("Time: {:?}", now.elapsed());
 }
