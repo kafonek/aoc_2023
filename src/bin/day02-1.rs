@@ -11,7 +11,7 @@ fn main() {
 
     let mut games = Vec::new();
     for line in &lines {
-        let game = Game::from_string(&line).unwrap();
+        let game = Game::from_string(line).unwrap();
         games.push(game);
     }
 

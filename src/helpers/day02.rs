@@ -16,7 +16,7 @@ impl Bag {
         let mut green = 0;
 
         for part in s.split(',') {
-            let parts: Vec<&str> = part.trim().split_whitespace().collect();
+            let parts: Vec<&str> = part.split_whitespace().collect();
             if parts.len() != 2 {
                 return Err("Invalid input format");
             }
