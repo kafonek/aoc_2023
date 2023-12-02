@@ -1,12 +1,18 @@
-use aoc_2023::utils::{get_data_path, read_lines};
 use regex::Regex;
 use std::time::Instant;
+use std::{
+    fs::File,
+    io::{BufRead, BufReader},
+    path::Path,
+};
 
 fn main() {
     let now = Instant::now();
-    let path = get_data_path();
+    let path = Path::new("./data/day01.txt");
     println!("Reading data from: {:?}", &path);
-    let lines = read_lines(&path);
+    let file = File::open(&path).expect("Failed to open data file");
+    let reader = BufReader::new(file);
+    let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
     let re = Regex::new(r"\d").unwrap(); // match any single digit
 

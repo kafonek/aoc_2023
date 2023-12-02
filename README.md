@@ -5,27 +5,27 @@ Advent of Code 2023 - Rust + Python
 # Project Layout
 
 ```
+/data
+  day01.txt <-- "prod" problem data for @kafonek AoC account
+  day02.txt
+  ...
+
 /notebooks
-  day01-1-py.ipynb <-- full training and prod Python solution here
+  day01-1-py.ipynb <-- prototype and solve "prod" problem with %%timeit
   day01-1-rs.ipynb <-- prototype Rust here, no full solution
   day01-2-py.ipynb
   day01-2-rs.ipynb
   ...
 
-/prod
-  .gitkeep
-  ... <- pasting my own prod data files here, gitignored
-
 /src
   lib.rs
-  utils.rs <-- helper functions for reading files from train/prod folder
   bin/
-    day01-1.rs <-- full Rust solution for train and prod set
-
-/train
-  day01-1.txt <-- sample/training data for day01 problem 1
-  day02-2.txt
-  ...
+    day01-1.rs <-- Rust solution for "prod" problem with timing
+    ...
+  utils/ 
+    mod.rs
+    day02.rs <-- For situations where structs/fn's are shared between parts 1 and 2 
+    ...
 
 Cargo.toml <-- Rust deps
 pyproject.toml <-- Python deps
@@ -35,19 +35,17 @@ pyproject.toml <-- Python deps
 
 `poetry run jupyter notebook` should start Jupyter and use ipykernel from the Poetry-managed `.venv`, with any dependencies in that virtual-env installed. You can check by running `sys.executable` in the Notebook.
 
-Choosing a Rust kernel will use the system-wide install of [evcxr](https://crates.io/crates/evcxr_jupyter), see documentation there for installation. To use third-party crates on the Rust kernel, include `:deps` in a cell.
+Choosing a Rust kernel will use the system-wide install of [evcxr](https://crates.io/crates/evcxr_jupyter), see documentation there for installation. To use third-party crates on the Rust kernel, include `:deps` in a cell. Evcxr will cache the download but not the compilation step by default, so using `:deps` is a bit slow. There is an option for [caching compilation in the evcxr documentation](https://github.com/evcxr/evcxr/blob/main/COMMON.md#caching) but it didn't seem to work for me and there are [various](https://github.com/evcxr/evcxr/issues/218) [github](https://github.com/evcxr/evcxr/issues/304) [issues](https://github.com/evcxr/evcxr/issues/319) on the topic. 
 
 # Rust binaries
 
-Rust solutions will be run as binaries. For day01 problem 1, the command will look like:
-
-- `cargo run --bin day01-1` <-- read from `train/` dataset and execute
-- `PROD=1 cargo run --bin day01-1` <-- read from `prod/` dataset and execute
-
-Optionally, `--release` can be added to build and run in release mode.
+Rust solutions will be run as binaries. They should be run with release mode, e.g. `cargo run --bin day01-1 --release`.
 
 # Problem Notes
 
 ## Day 01
  - Part 2 was quite gimmicky imo with its wrinkle that spelled-out numbers could overlap in letters, like "eightwo" would match 8 and 2. Creating a regex pattern like "one|two|three|..." and doing normal match-iteration didn't work because regex by default consumes the longest match. To get around that, used a hacky "find a match then start looking again from match start index + 1" approach.
 
+## Day 02
+ - Much easier than the day 01 part 2
+ - Really liked the symmetry between the Python and Rust code in this problem
