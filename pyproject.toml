@@ -4,12 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["Kafonek <matt.kafonek@noteable.io>"]
 readme = "README.md"
-packages = [{include = "aoc_2023"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.10"
 jupyter = "^1.0.0"
 notebook = "^7.0.6"
+ipython = "^8.18.1"
+ipykernel = "^6.27.1"
 
 
 [build-system]

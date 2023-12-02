@@ -1,7 +1,7 @@
 # VSCODE
 .vscode
 
-# Prod puzzles
+# Prod puzzle values
 prod/
 
 # RUST
