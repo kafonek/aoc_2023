@@ -12,8 +12,9 @@ jupyter = "^1.0.0"
 notebook = "^7.0.6"
 ipython = "^8.18.1"
 ipykernel = "^6.27.1"
+maturin = "^1.4.0"
 
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["maturin"]
+build-backend = "maturin"

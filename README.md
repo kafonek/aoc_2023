@@ -11,10 +11,9 @@ Advent of Code 2023 - Rust + Python
   ...
 
 /notebooks
-  day01-1-py.ipynb <-- prototype and solve "prod" problem with %%timeit
-  day01-1-rs.ipynb <-- prototype Rust here, no full solution
-  day01-2-py.ipynb
-  day01-2-rs.ipynb
+  day02-1-py.ipynb <-- prototype and solve "prod" problem with %%timeit
+  day02-1-rs.ipynb <-- prototype Rust here, no full solution
+  day02-1-pyo3.ipynb <-- if there's Rust code for the problem, Python nb equivalent using pyo3 bindings
   ...
 
 /src
@@ -26,6 +25,8 @@ Advent of Code 2023 - Rust + Python
     mod.rs
     day02.rs <-- For situations where structs/fn's are shared between parts 1 and 2 
     ...
+  py_bindings/
+    day02.rs <-- pyo3 code wrapping the "pure Rust" code from utils/day02.rs
 
 Cargo.toml <-- Rust deps
 pyproject.toml <-- Python deps
@@ -33,31 +34,41 @@ pyproject.toml <-- Python deps
 
 # Notebooks
 
-`poetry run jupyter notebook` should start Jupyter and use ipykernel from the Poetry-managed `.venv`, with any dependencies in that virtual-env installed. You can check by running `sys.executable` in the Notebook.
+- `poetry install` should install `jupyter`, `notebook`, and `ipykernel` so that basic `-py` Notebooks work
+- [setup Rust](https://www.rust-lang.org/tools/install) and [jupyter-evcxr](https://crates.io/crates/evcxr_jupyter) to enable a Rust kernel to run the `-rs` Notebooks
+- `maturin develop` will install the `aoc_2023` Python package, which are `pyo3` bindings to Rust code, and used in the `-pyo3` Notebooks
 
-Choosing a Rust kernel will use the system-wide install of [evcxr](https://crates.io/crates/evcxr_jupyter), see documentation there for installation. To use third-party crates on the Rust kernel, include `:deps` in a cell. Evcxr will cache the download but not the compilation step by default, so using `:deps` is a bit slow. There is an option for [caching compilation in the evcxr documentation](https://github.com/evcxr/evcxr/blob/main/COMMON.md#caching) but it didn't seem to work for me and there are [various](https://github.com/evcxr/evcxr/issues/218) [github](https://github.com/evcxr/evcxr/issues/304) [issues](https://github.com/evcxr/evcxr/issues/319) on the topic. 
+To start the server: `poetry run jupyter notebook` (or `poetry run jupyter lab` if you prefer Jupyter Lab UI)
 
+## Jupyter-evcxr
+
+To use third-party crates on the Rust kernel, include `:deps` in a cell. Evcxr will cache the download but not the compilation step by default, so using `:deps` is a bit slow. There is an option for [caching compilation in the evcxr documentation](https://github.com/evcxr/evcxr/blob/main/COMMON.md#caching) but it didn't seem to work for me and there are [various](https://github.com/evcxr/evcxr/issues/218) [github](https://github.com/evcxr/evcxr/issues/304) [issues](https://github.com/evcxr/evcxr/issues/319) on the topic. 
+
+# Pyo3 Bindings
+
+One purpose of this repo is to explore how to create and utilize Python bindings to Rust code which can potentially improve performance. [pyo3](https://pyo3.rs/v0.14.5/) is used within the Rust code to "wrap" Rust code for Python usage, while [maturin](https://github.com/PyO3/maturin) is the build tool that can create Python wheels so that wrapped code is importable.
+
+- `Cargo.toml` includes the `pyo3` dependency and has special instructions to build the `.so` file (`cdylib` in addition to `rlib`)
+- `pyproject.toml` includes `maturin` as a dependency and specifies using `maturin` in its `build-system`
+- Compare the `%%timeit` results between `-py` and `-pyo3` Notebooks to see how effective Python bindings to Rust code can be
 
 # Problem Notes
+
+Thoughts about each days problem, and timing from the pure Rust solutions.
 
 ## Day 01
  - Part 2 was quite gimmicky imo with its wrinkle that spelled-out numbers could overlap in letters, like "eightwo" would match 8 and 2. Creating a regex pattern like "one|two|three|..." and doing normal match-iteration didn't work because regex by default consumes the longest match. To get around that, used a hacky "find a match then start looking again from match start index + 1" approach.
 
  ```
  ❯ cargo run --bin day01-1 --release
-   Compiling aoc_2023 v0.1.0 (/home/kafonek/aoc_2023)
-    Finished release [optimized] target(s) in 0.40s
-     Running `target/release/day01-1`
 Reading data from: "./data/day01.txt"
 Answer: 55017
-Time: 490.214µs
+Time: 474.444µss
 
 ❯ cargo run --bin day01-2 --release
-    Finished release [optimized] target(s) in 0.00s
-     Running `target/release/day01-2`
 Reading data from: "./data/day01.txt"
 Answer: 53539
-Time: 836.119µs
+Time: 828.054µs
 ```
 
 ## Day 02
@@ -65,18 +76,13 @@ Time: 836.119µs
  - Really liked the symmetry between the Python and Rust code in this problem
 
  ```
- ❯ cargo run --bin day02-1 --release
-    Finished release [optimized] target(s) in 0.00s
-     Running `target/release/day02-1`
+❯ cargo run --bin day02-1 --release
 Reading data from: "./data/day02.txt"
 Answer: 2795
-Time: 133.483µs
+Time: 130.991µs
 
 ❯ cargo run --bin day02-2 --release
-   Compiling aoc_2023 v0.1.0 (/home/kafonek/aoc_2023)
-    Finished release [optimized] target(s) in 0.18s
-     Running `target/release/day02-2`
 Reading data from: "./data/day02.txt"
 Answer: 75561
-Time: 130.024µs
+Time: 128.713µs
 ```
