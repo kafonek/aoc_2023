@@ -36,7 +36,7 @@ pyproject.toml <-- Python deps
 
 - `poetry install` should install `jupyter`, `notebook`, and `ipykernel` so that basic `-py` Notebooks work
 - [setup Rust](https://www.rust-lang.org/tools/install) and [jupyter-evcxr](https://crates.io/crates/evcxr_jupyter) to enable a Rust kernel to run the `-rs` Notebooks
-- `maturin develop` will install the `aoc_2023` Python package, which are `pyo3` bindings to Rust code, and used in the `-pyo3` Notebooks
+- `maturin develop --release` will install the `aoc_2023` Python package, which are `pyo3` bindings to Rust code, and used in the `-pyo3` Notebooks
 
 To start the server: `poetry run jupyter notebook` (or `poetry run jupyter lab` if you prefer Jupyter Lab UI)
 
