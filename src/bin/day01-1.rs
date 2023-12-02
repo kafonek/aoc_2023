@@ -1,3 +1,9 @@
+/*
+https://adventofcode.com/2023/day/1 part one
+ - find the first and last digit in each line of the data file
+ - combine those to make a two-digit integer (if there's only one digit, use it twice)
+ - sum all the two-digit integers
+*/
 use regex::Regex;
 use std::time::Instant;
 use std::{
@@ -39,6 +45,6 @@ fn main() {
         .collect::<Vec<i32>>();
 
     let sum = combines_n.iter().sum::<i32>();
-    println!("Sum: {}", sum);
+    println!("Answer: {}", sum);
     println!("Time: {:?}", now.elapsed());
 }

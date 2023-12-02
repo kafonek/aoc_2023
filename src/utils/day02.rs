@@ -1,46 +1,52 @@
+/*
+Use:
+
+let text = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
+let game = Game::from_string(text).unwrap();
+*/
 #[derive(Debug)]
 pub struct Bag {
-    blue: i32,
     red: i32,
     green: i32,
+    blue: i32,
 }
 
 impl Bag {
-    pub fn new(blue: i32, red: i32, green: i32) -> Bag {
-        Bag { blue, red, green }
+    pub fn new(red: i32, green: i32, blue: i32) -> Bag {
+        Bag { red, green, blue }
     }
 
     pub fn from_string(s: &str) -> Result<Bag, &'static str> {
-        let mut blue = 0;
         let mut red = 0;
         let mut green = 0;
+        let mut blue = 0;
 
         for part in s.split(',') {
-            let parts: Vec<&str> = part.split_whitespace().collect();
+            let parts: Vec<&str> = part.trim().split_whitespace().collect();
             if parts.len() != 2 {
                 return Err("Invalid input format");
             }
 
             let count = parts[0].parse::<i32>().map_err(|_| "Invalid count")?;
             match parts[1] {
-                "blue" => blue = count,
                 "red" => red = count,
                 "green" => green = count,
+                "blue" => blue = count,
                 _ => return Err("Unknown color"),
             }
         }
 
-        Ok(Bag::new(blue, red, green))
+        Ok(Bag::new(red, green, blue))
     }
 
     // used in part 1 of the problem
     pub fn can_contain(&self, other: &Bag) -> bool {
-        self.blue >= other.blue && self.red >= other.red && self.green >= other.green
+        self.red >= other.red && self.green >= other.green && self.blue >= other.blue
     }
 
     // used in part 2 of the problem
     pub fn power(&self) -> i32 {
-        self.blue * self.green * self.red
+        self.red * self.green * self.blue
     }
 }
 
@@ -84,16 +90,16 @@ impl Game {
 
     // used in part 2 of the problem
     pub fn max_values(&self) -> Bag {
-        let mut max_blue = 0;
         let mut max_red = 0;
         let mut max_green = 0;
+        let mut max_blue = 0;
 
         for bag in &self.bags {
-            max_blue = max_blue.max(bag.blue);
             max_red = max_red.max(bag.red);
             max_green = max_green.max(bag.green);
+            max_blue = max_blue.max(bag.blue);
         }
 
-        Bag::new(max_blue, max_red, max_green)
+        Bag::new(max_red, max_green, max_blue)
     }
 }

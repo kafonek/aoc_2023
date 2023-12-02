@@ -1,3 +1,9 @@
+/*
+https://adventofcode.com/2023/day/2 part two
+ - Find max red, green, blue values among all bags in each game
+ - Create "power" value for each game by multiplying max red, green, blue values
+ - Sum all "power" values
+*/
 use aoc_2023::utils::day02::Game;
 use std::time::Instant;
 use std::{

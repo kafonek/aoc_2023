@@ -1,3 +1,11 @@
+/*
+https://adventofcode.com/2023/day/1 part two
+ - convert all spelled-out numbers to single-digit numbers
+   - words may have overlapping letters, e.g. eightwo should be turned into 82
+ - find the first and last digit in each line of the data file
+ - combine those to make a two-digit integer (if there's only one digit, use it twice)
+ - sum all the two-digit integers
+*/
 use regex::Regex;
 use std::{collections::HashMap, time::Instant};
 use std::{
@@ -82,6 +90,6 @@ fn main() {
         .collect::<Vec<i32>>();
 
     let sum = combines_n.iter().sum::<i32>();
-    println!("Sum: {}", sum);
+    println!("Answer: {}", sum);
     println!("Time: {:?}", now.elapsed());
 }
