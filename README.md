@@ -37,15 +37,46 @@ pyproject.toml <-- Python deps
 
 Choosing a Rust kernel will use the system-wide install of [evcxr](https://crates.io/crates/evcxr_jupyter), see documentation there for installation. To use third-party crates on the Rust kernel, include `:deps` in a cell. Evcxr will cache the download but not the compilation step by default, so using `:deps` is a bit slow. There is an option for [caching compilation in the evcxr documentation](https://github.com/evcxr/evcxr/blob/main/COMMON.md#caching) but it didn't seem to work for me and there are [various](https://github.com/evcxr/evcxr/issues/218) [github](https://github.com/evcxr/evcxr/issues/304) [issues](https://github.com/evcxr/evcxr/issues/319) on the topic. 
 
-# Rust binaries
-
-Rust solutions will be run as binaries. They should be run with release mode, e.g. `cargo run --bin day01-1 --release`.
 
 # Problem Notes
 
 ## Day 01
  - Part 2 was quite gimmicky imo with its wrinkle that spelled-out numbers could overlap in letters, like "eightwo" would match 8 and 2. Creating a regex pattern like "one|two|three|..." and doing normal match-iteration didn't work because regex by default consumes the longest match. To get around that, used a hacky "find a match then start looking again from match start index + 1" approach.
 
+ ```
+ ❯ cargo run --bin day01-1 --release
+   Compiling aoc_2023 v0.1.0 (/home/kafonek/aoc_2023)
+    Finished release [optimized] target(s) in 0.40s
+     Running `target/release/day01-1`
+Reading data from: "./data/day01.txt"
+Answer: 55017
+Time: 490.214µs
+
+❯ cargo run --bin day01-2 --release
+    Finished release [optimized] target(s) in 0.00s
+     Running `target/release/day01-2`
+Reading data from: "./data/day01.txt"
+Answer: 53539
+Time: 836.119µs
+```
+
 ## Day 02
  - Much easier than the day 01 part 2
  - Really liked the symmetry between the Python and Rust code in this problem
+
+ ```
+ ❯ cargo run --bin day02-1 --release
+    Finished release [optimized] target(s) in 0.00s
+     Running `target/release/day02-1`
+Reading data from: "./data/day02.txt"
+Answer: 2795
+Time: 133.483µs
+
+❯ cargo run --bin day02-2 --release
+   Compiling aoc_2023 v0.1.0 (/home/kafonek/aoc_2023)
+    Finished release [optimized] target(s) in 0.18s
+     Running `target/release/day02-2`
+Reading data from: "./data/day02.txt"
+Answer: 75561
+Time: 130.024µs
+```
