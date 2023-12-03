@@ -14,5 +14,6 @@ crate-type = ["rlib", "cdylib"]
 
 
 [dependencies]
+gridthings = { git = "https://github.com/kafonek/gridthings-rs", version = "0.1.0" }
 pyo3 = { version = "0.20.0", features = ["extension-module"] }
 regex = "1.10.2"
