@@ -75,7 +75,7 @@ Time: 828.054µs
  - Much easier than the day 01 part 2
  - Really liked the symmetry between the Python and Rust code in this problem
 
- ```
+```
 ❯ cargo run --bin day02-1 --release
 Reading data from: "./data/day02.txt"
 Answer: 2795
@@ -85,4 +85,22 @@ Time: 130.991µs
 Reading data from: "./data/day02.txt"
 Answer: 75561
 Time: 128.713µs
+```
+
+## Day 03
+ - classic [gridthings](https://github.com/kafonek/gridthings) stuff, working on [porting that to rust](https://github.com/kafonek/gridthings-rs) now
+ - no RS notebook until I get `gridthings-rs` up onto crates.io, can't `:dep` a local or github-hosted crate
+ - need more time to write pyo3 bindings for `gridthings-rs`
+ - pretty amazing to see my Python gridthings implementation take over 1s and Rust take under 1ms
+
+ ```
+ ❯ cargo run --bin day03-1 --release
+Reading data from: "./data/day03.txt"
+Answer: 527144
+Time: 847.469µs
+
+❯ cargo run --bin day03-2 --release
+Reading data from: "./data/day03.txt"
+Answer: 81463996
+Time: 1.022036ms
 ```
