@@ -517,21 +517,25 @@ files = [
 
 [[package]]
 name = "gridthings"
-version = "0.1.2"
+version = "0.1.3"
 description = "Python library for working with Grid-like structures (e.g. tic-tac-toe)"
 optional = false
-python-versions = ">=3.8,<4.0"
-files = [
-    {file = "gridthings-0.1.2-py3-none-any.whl", hash = "sha256:531c5f4203f77ef81fd8a8d1f3749f44a74db9d5d675c5fe569a02e8dd7ca151"},
-    {file = "gridthings-0.1.2.tar.gz", hash = "sha256:12bf2cb65544804ad294661f06dc6c7a48c2f8bcb368b95824e9c51466c5866e"},
-]
+python-versions = "^3.8"
+files = []
+develop = false
 
 [package.dependencies]
-importlib-metadata = ">=4.8.2,<5.0.0"
-pydantic = ">=1.8.2,<2.0.0"
+importlib-metadata = "^4.8.2"
+pydantic = "^1.8.2"
 
 [package.extras]
 examples = ["jupyter (>=1.0.0,<2.0.0)", "pandas (>=1.3.4,<2.0.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/kafonek/gridthings"
+reference = "mrk/cell-hashable"
+resolved_reference = "43d305f6360716cfa672484dc2c7633d456e9ff4"
 
 [[package]]
 name = "idna"
@@ -2197,13 +2201,13 @@ files = [
 
 [[package]]
 name = "websocket-client"
-version = "1.6.4"
+version = "1.7.0"
 description = "WebSocket client for Python with low level API options"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "websocket-client-1.6.4.tar.gz", hash = "sha256:b3324019b3c28572086c4a319f91d1dcd44e6e11cd340232978c684a7650d0df"},
-    {file = "websocket_client-1.6.4-py3-none-any.whl", hash = "sha256:084072e0a7f5f347ef2ac3d8698a5e0b4ffbfcab607628cadabc650fc9a83a24"},
+    {file = "websocket-client-1.7.0.tar.gz", hash = "sha256:10e511ea3a8c744631d3bd77e61eb17ed09304c413ad42cf6ddfa4c7787e8fe6"},
+    {file = "websocket_client-1.7.0-py3-none-any.whl", hash = "sha256:f4c3d22fec12a2461427a29957ff07d35098ee2d976d3ba244e688b8b4057588"},
 ]
 
 [package.extras]
@@ -2240,4 +2244,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bd7b569391591f7711a22eddc624722ca4e15a461cd5650a9eafb0ed4088a447"
+content-hash = "9d7ef86b289ab9cff2e80f9ad8ae11f8ce0880339a662570a78e86071b232de0"
