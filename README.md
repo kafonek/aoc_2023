@@ -104,3 +104,18 @@ Reading data from: "./data/day03.txt"
 Answer: 81463996
 Time: 1.022036ms
 ```
+
+## Day 04
+ - Are even days rest days?
+ - Another easy example of `dataclass` -> Rust code -> clean pyo3 bindings
+
+```
+❯ cargo run --bin day04-1 --release
+Answer: 20855
+Time: 177.62µs
+
+❯ cargo run --bin day04-2 --release
+Reading data from: "./data/day04.txt"
+Answer: 5489600
+Time: 186.753µs
+```
