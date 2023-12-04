@@ -17,7 +17,7 @@ Advent of Code 2023 - Rust + Python
   ...
 
 /src
-  lib.rs
+  lib.rs <-- includes `#[pymodule]` macro for outputting the Python bindings
   bin/
     day01-1.rs <-- Rust solution for "prod" problem with timing
     ...
@@ -54,7 +54,7 @@ One purpose of this repo is to explore how to create and utilize Python bindings
 
 # Problem Notes
 
-Thoughts about each days problem, and timing from the pure Rust solutions.
+Thoughts about each days problem, and timing from the pure Rust solutions. The `println!` lines in the Rust binaries seem to add a few microseconds, so there are cases like day02 where the `%%timeit` cells in `pyo3` Notebooks actually show faster results than `cargo run` on the binaries.
 
 ## Day 01
  - Part 2 was quite gimmicky imo with its wrinkle that spelled-out numbers could overlap in letters, like "eightwo" would match 8 and 2. Creating a regex pattern like "one|two|three|..." and doing normal match-iteration didn't work because regex by default consumes the longest match. To get around that, used a hacky "find a match then start looking again from match start index + 1" approach.
