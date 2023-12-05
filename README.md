@@ -119,3 +119,6 @@ Reading data from: "./data/day04.txt"
 Answer: 5489600
 Time: 186.753µs
 ```
+
+## Day 05
+ - First thing I tried was making a dictionary of all possible src -> dst mappings which worked fine with sample data but OOM'ed on "prod" data
