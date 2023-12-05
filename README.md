@@ -123,7 +123,7 @@ Time: 186.753µs
 ## Day 05
  - First thing I tried was making a dictionary of all possible src -> dst mappings which worked fine with sample data but OOM'ed on "prod" data
  - Developed a nice Range -> Mapping -> Pipeline structure I liked, worked well for part 1 in Python and Rust
- - Part 2 is hard.
+ - Part 2 is hard. Haven't figured out how to do it in Python.
  - I tried being clever for hours but instead just brute forced it in Rust. Rayon go brrr
 
 ```
