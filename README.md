@@ -122,3 +122,23 @@ Time: 186.753µs
 
 ## Day 05
  - First thing I tried was making a dictionary of all possible src -> dst mappings which worked fine with sample data but OOM'ed on "prod" data
+ - Developed a nice Range -> Mapping -> Pipeline structure I liked, worked well for part 1 in Python and Rust
+ - Part 2 is hard.
+ - I tried being clever for hours but instead just brute forced it in Rust. Rayon go brrr
+
+```
+❯ cargo run --bin day05-1 --release
+Reading data from: "./data/day05.txt"
+1972667147 -> 1852951016
+405592018 -> 662197086
+Answer: 662197086
+Time: 79.538µs
+
+aoc_2023 on  main [$!] is 📦 v0.1.0 via 🐍 v3.11.4 (aoc-2023-py3.11) via 🦀 v1.74.0 
+❯ cargo run --bin day05-2 --release
+Reading data from: "./data/day05.txt"
+Input ranges: [1972667147..2378259165, 1450194064..1477976316, 348350443..410212617, 3911195009..4092364215, 626861593..765648080, 2886966111..3162265119, 825403564..1303406955, 514585599..520687690, 2526020300..2541511753, 3211013652..3757205391]
+Total number of items in flattened ranges: 2136279819
+Answer: 52510809
+Time: 29.502550806s
+```
