@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass
 from typing import List, Optional
 
@@ -13,17 +12,21 @@ class Bag:
     def from_string(cls, s: str):
         "input should look something like: 3 blue, 4 red, 2 green"
         d = {}
-        for part in s.strip().split(','):
+        for part in s.strip().split(","):
             count, color = part.split()
             d[color] = int(count)
         return cls(**d)
 
     def can_contain(self, other: "Bag"):
-        return self.red >= other.red and self.green >= other.green and self.blue >= other.blue
-    
-    def power(self) -> int: 
+        return (
+            self.red >= other.red
+            and self.green >= other.green
+            and self.blue >= other.blue
+        )
+
+    def power(self) -> int:
         return self.red * self.green * self.blue
-    
+
 
 @dataclass
 class Game:
@@ -33,10 +36,10 @@ class Game:
     @classmethod
     def from_string(cls, s: str):
         "input sould look something like: Game 1: 3 blue; ..."
-        id_part, bag_parts = s.split(':', 1)
+        id_part, bag_parts = s.split(":", 1)
         id = id_part.split()[-1]
         bags = []
-        for part in bag_parts.split(';'):
+        for part in bag_parts.split(";"):
             bag = Bag.from_string(part)
             bags.append(bag)
         return cls(id=int(id), bags=bags)
@@ -45,8 +48,8 @@ class Game:
         for bag in self.bags:
             if not max_bag.can_contain(bag):
                 return False
-        return True    
-    
+        return True
+
     def max_values(self) -> Bag:
         max_red = max_green = max_blue = 0
         for bag in self.bags:

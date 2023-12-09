@@ -11,7 +11,7 @@ class Number:
 
     @property
     def value(self) -> int:
-        s = ''.join(c.value for c in self.cells)
+        s = "".join(c.value for c in self.cells)
         return int(s)
 
     def peek_all(self) -> List[Cell]:
@@ -34,17 +34,18 @@ class Number:
 
     def symbol_adjacent(self) -> bool:
         for item in self.peek_all():
-            if item.value != '.' and not item.value.isdigit():
+            if item.value != "." and not item.value.isdigit():
                 return True
         return False
-    
+
     def gears(self) -> List[Cell]:
         "Return the list of Gears (*) touching this Number"
         return [item for item in self.peek_all() if item.value == "*"]
 
     def __repr__(self):
         return f"<Number {self.value})>"
-    
+
+
 def extract_numbers(grid: Grid) -> List[Number]:
     collection: List[List[Cell]] = []
     current: List[Cell] = []

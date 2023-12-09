@@ -291,5 +291,18 @@ Time: 68.95 ms
 ```
 
 # Day 08
+ - Learned that Rust has built in `itertools.cycle()` in `.chars().cycle()`
+ - My first approach creating `Point` objects and a dictionary of `{point.name: Point}` then traversing the lookups worked fine for Python and Rust in part 1 but neither could brute force part 2
+ - I tried to optimize the loop in Rust by switching from any kind of string checks and optimizing a dictionary lookup into a vector index check. It's fast but not fast enough to brute force part 2. Need to be more clever somehow
 
- - learned that Rust has built in `itertools.cycle()` in `.chars().cycle()`
+```
+❯ poetry run python src/bin/day08-1.py
+Reading data from: data/day08.txt
+Answer: 19631
+Time: 1.73 ms
+
+❯ cargo run --bin day08-1 --release -q
+Reading data from: "./data/day08.txt"
+Answer: 19631
+Time: 267.983µs
+```
