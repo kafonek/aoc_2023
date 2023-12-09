@@ -1,11 +1,9 @@
 use aoc_2023::rust::day06::Race;
 
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 use std::path::Path;
 use std::time::Instant;
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-};
 
 fn main() {
     let now = Instant::now();

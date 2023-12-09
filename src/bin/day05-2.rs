@@ -2,12 +2,10 @@ use aoc_2023::rust::day05::Pipeline;
 use rayon::prelude::*;
 
 use aoc_2023::utils::run_and_time;
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-    ops::Range,
-    path::Path,
-};
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::ops::Range;
+use std::path::Path;
 
 fn solve(fp: &Path) -> String {
     let file = File::open(&fp).expect("Failed to open data file");

@@ -8,7 +8,8 @@ use aoc_2023::rust::day03::Number;
 use aoc_2023::utils::run_and_time;
 use gridthings::{Cell, Grid, GridFromString};
 
-use std::{collections::HashMap, path::Path};
+use std::collections::HashMap;
+use std::path::Path;
 
 fn solve(fp: &Path) -> String {
     let text = std::fs::read_to_string(&fp).expect("Failed to read data file");

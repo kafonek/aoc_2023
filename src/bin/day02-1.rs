@@ -6,11 +6,9 @@ https://adventofcode.com/2023/day/2 part one
 */
 use aoc_2023::rust::day02::{Bag, Game};
 use aoc_2023::utils::run_and_time;
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-    path::Path,
-};
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::path::Path;
 
 fn solve(fp: &Path) -> String {
     let file = File::open(&fp).expect("Failed to open data file");

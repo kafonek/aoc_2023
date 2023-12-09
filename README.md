@@ -23,17 +23,17 @@ The project is laid out following the [Cargo Package Layout](https://doc.rust-la
  - Run a solution, e.g. `cargo run --bin day01-1` or `poetry run python src/bin/day01-01.py`
 
 ```
-/data
+data/
   day01.txt <-- datasets for each days problem for @kafonek AoC account
   ...
 
-/notebooks
+notebooks/
   day01-1-py.ipynb <-- prototype code that may be moved to python/aoc_2023/day01.py
   day01-1-rs.ipynb <-- prototype code that may be moved to src/rust/day01.rs
   day01-1-pyo3.ipynb <-- prototype Python code that's using pyo3 bindings to Rust
   ...
 
-/python <-- https://github.com/PyO3/maturin?tab=readme-ov-file#mixed-rustpython-projects
+python/
   aoc_2023/
     __init__.py <-- imports pyo3 namespace to bring it into scope
     aoc_2023.cpython-311-x86_64-linux-gnu.so <-- created by `maturin develop`, git ignored
@@ -42,7 +42,7 @@ The project is laid out following the [Cargo Package Layout](https://doc.rust-la
     pyo3/
       day01.pyi <-- type hinting for the pyo3 wrapped Rust code
 
-/src
+src/
   lib.rs <-- `pub mod` the pure Rust so binary scripts can ues them, `mod` the py_bindings
   utils.rs <-- `run_and_time` to measure execution without print statements slowing things down
   bin/

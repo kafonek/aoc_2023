@@ -1,4 +1,5 @@
-use std::{path::Path, time::Instant};
+use std::path::Path;
+use std::time::Instant;
 
 // Helper function to time how long it takes to run a function and print out some information
 // - Input file path

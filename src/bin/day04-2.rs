@@ -1,11 +1,9 @@
 use aoc_2023::rust::day04::Card;
 use aoc_2023::utils::run_and_time;
 use std::collections::HashMap;
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-    path::Path,
-};
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::path::Path;
 
 fn solve(fp: &Path) -> String {
     let file = File::open(&fp).expect("Failed to open data file");
