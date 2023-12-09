@@ -37,11 +37,11 @@ impl Card {
     pub fn score(&self) -> i32 {
         let mut result: i32 = 0;
         for n in &self.guess_numbers {
-            if self.winning_numbers.contains(&n) {
+            if self.winning_numbers.contains(n) {
                 if result == 0 {
                     result = 1;
                 } else {
-                    result = result * 2
+                    result *= 2
                 }
             }
         }

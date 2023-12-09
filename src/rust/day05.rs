@@ -63,6 +63,12 @@ pub struct Pipeline {
     maps: Vec<Mapping>,
 }
 
+impl Default for Pipeline {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Pipeline {
     pub fn new() -> Pipeline {
         Pipeline { maps: Vec::new() }
@@ -84,15 +90,13 @@ impl Pipeline {
                 if let Some(map) = current_map.take() {
                     pipeline.maps.push(map);
                 }
+            } else if let Some(ref mut map) = current_map {
+                map.update(trimmed_line);
             } else {
-                if let Some(ref mut map) = current_map {
-                    map.update(trimmed_line);
-                } else {
-                    panic!(
-                        "Got a parseable line but no Mapping obj to update: {}",
-                        trimmed_line
-                    );
-                }
+                panic!(
+                    "Got a parseable line but no Mapping obj to update: {}",
+                    trimmed_line
+                );
             }
         }
 

@@ -14,7 +14,7 @@ use std::io::{BufRead, BufReader};
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let file = File::open(&fp).expect("Failed to open data file");
+    let file = File::open(fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 

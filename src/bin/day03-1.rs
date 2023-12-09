@@ -11,7 +11,7 @@ use gridthings::{Grid, GridFromString};
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let text = std::fs::read_to_string(&fp).expect("Failed to read data file");
+    let text = std::fs::read_to_string(fp).expect("Failed to read data file");
     let grid: Grid<char> = Grid::from_string(&text);
 
     // Find all contiguous numbers in each row
@@ -19,7 +19,7 @@ fn solve(fp: &Path) -> String {
     let mut current_collection = Vec::new();
     for row in grid.rows() {
         for cell in row {
-            if cell.value.is_digit(10) {
+            if cell.value.is_ascii_digit() {
                 current_collection.push(cell.clone());
             } else if !current_collection.is_empty() {
                 numbers.push(Number::new(current_collection.clone()));

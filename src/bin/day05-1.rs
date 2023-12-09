@@ -5,13 +5,13 @@ use std::io::{BufRead, BufReader};
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let file = File::open(&fp).expect("Failed to open data file");
+    let file = File::open(fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
     // input looks like: seeds: 1972667147 405592018 1450194064 27782252
     // split on "seeds:" then split on whitespace and cast each to usize
-    let parts = lines[0].split_once(":").unwrap();
+    let parts = lines[0].split_once(':').unwrap();
     let seeds: Vec<usize> = parts
         .1
         .split_whitespace()

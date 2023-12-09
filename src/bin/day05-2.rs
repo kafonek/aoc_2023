@@ -8,14 +8,14 @@ use std::ops::Range;
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let file = File::open(&fp).expect("Failed to open data file");
+    let file = File::open(fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
     // input looks like: seeds: 1972667147 405592018 1450194064 27782252
     // this time though we need to iterate over every two numbers where the first is a start value
     // and the second is a range to check over
-    let parts = lines[0].split_once(":").unwrap();
+    let parts = lines[0].split_once(':').unwrap();
     let mut seeds: Vec<usize> = parts
         .1
         .split_whitespace()
@@ -24,7 +24,7 @@ fn solve(fp: &Path) -> String {
     let pipeline = Pipeline::from_lines(lines[2..].to_vec());
 
     let mut input_ranges: Vec<Range<usize>> = Vec::new();
-    while seeds.len() > 0 {
+    while !seeds.is_empty() {
         let start = seeds.remove(0);
         let range_length = seeds.remove(0);
         input_ranges.push(start..start + range_length);

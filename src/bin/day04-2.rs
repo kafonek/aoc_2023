@@ -6,7 +6,7 @@ use std::io::{BufRead, BufReader};
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let file = File::open(&fp).expect("Failed to open data file");
+    let file = File::open(fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -27,7 +27,7 @@ fn solve(fp: &Path) -> String {
             }
         }
     }
-    let answer = counts.values().into_iter().sum::<i32>();
+    let answer = counts.values().sum::<i32>();
     answer.to_string()
 }
 

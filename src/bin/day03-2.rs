@@ -12,7 +12,7 @@ use std::collections::HashMap;
 use std::path::Path;
 
 fn solve(fp: &Path) -> String {
-    let text = std::fs::read_to_string(&fp).expect("Failed to read data file");
+    let text = std::fs::read_to_string(fp).expect("Failed to read data file");
     let grid: Grid<char> = Grid::from_string(&text);
 
     // Find all contiguous numbers in each row
@@ -20,7 +20,7 @@ fn solve(fp: &Path) -> String {
     let mut current_collection = Vec::new();
     for row in grid.rows() {
         for cell in row {
-            if cell.value.is_digit(10) {
+            if cell.value.is_ascii_digit() {
                 current_collection.push(cell.clone());
             } else if !current_collection.is_empty() {
                 numbers.push(Number::new(current_collection.clone()));
@@ -37,7 +37,7 @@ fn solve(fp: &Path) -> String {
     let mut gears: HashMap<Cell<char>, Vec<Number>> = HashMap::new();
     for number in &numbers {
         for gear in number.gears(&grid) {
-            gears.entry(gear).or_insert(Vec::new()).push(number.clone());
+            gears.entry(gear).or_default().push(number.clone());
         }
     }
 

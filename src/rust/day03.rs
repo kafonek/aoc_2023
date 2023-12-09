@@ -37,7 +37,7 @@ impl Number {
     // True if any of the cells are adjacent to a cell with a symbol (non-digit, non-.)
     pub fn symbol_adjacent(&self, grid: &Grid<char>) -> bool {
         for cell in self.peek_all(grid) {
-            if !cell.value.is_digit(10) && cell.value != '.' {
+            if !cell.value.is_ascii_digit() && cell.value != '.' {
                 return true;
             }
         }
