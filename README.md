@@ -289,3 +289,7 @@ Reading data from: data/day06.txt
 Answer: 49240091
 Time: 68.95 ms
 ```
+
+# Day 08
+
+ - learned that Rust has built in `itertools.cycle()` in `.chars().cycle()`

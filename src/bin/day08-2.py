@@ -32,12 +32,12 @@ def solve(fp: Path) -> str:
             if not traverse.current.name.endswith("Z"):
                 complete = False
         steps += 1
-        if steps % 100 == 0:
+        if steps % 10000 == 0:
             print(steps)
         if complete:
             break
 
-    return str(traverses[0].steps)
+    return str(steps)
 
 
 if __name__ == "__main__":
