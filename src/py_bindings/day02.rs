@@ -1,4 +1,4 @@
-use crate::utils::day02::{Bag, Game};
+use crate::rust::day02::{Bag, Game};
 use pyo3::prelude::*;
 
 #[pyclass(name = "Bag")]

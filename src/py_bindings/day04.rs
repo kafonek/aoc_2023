@@ -1,4 +1,4 @@
-use crate::utils::day04::Card;
+use crate::rust::day04::Card;
 use pyo3::prelude::*;
 
 #[pyclass(name = "Card")]

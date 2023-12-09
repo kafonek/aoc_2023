@@ -1,17 +1,13 @@
-use aoc_2023::utils::day05::Pipeline;
-
-use std::time::Instant;
+use aoc_2023::rust::day05::Pipeline;
+use aoc_2023::utils::run_and_time;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
     path::Path,
 };
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day05.txt");
-    println!("Reading data from: {:?}", &path);
-    let file = File::open(&path).expect("Failed to open data file");
+fn solve(fp: &Path) -> String {
+    let file = File::open(&fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -29,11 +25,13 @@ fn main() {
     for seed in seeds {
         let result = pipeline.get(seed, false);
         if result < answer {
-            println!("{} -> {}", seed, result);
             answer = result;
         }
     }
+    answer.to_string()
+}
 
-    println!("Answer: {}", answer);
-    println!("Time: {:?}", now.elapsed());
+fn main() {
+    let path = Path::new("./data/day05.txt");
+    run_and_time(solve, path)
 }

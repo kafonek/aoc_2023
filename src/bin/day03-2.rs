@@ -4,18 +4,14 @@ https://adventofcode.com/2023/day/3 part one
  - identify all * in the grid touching exactly two numbers
  - multiply those numbers together and sum all those products
 */
-use aoc_2023::utils::day03::Number;
+use aoc_2023::rust::day03::Number;
+use aoc_2023::utils::run_and_time;
 use gridthings::{Cell, Grid, GridFromString};
 
-use std::time::Instant;
 use std::{collections::HashMap, path::Path};
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day03.txt");
-    println!("Reading data from: {:?}", &path);
-
-    let text = std::fs::read_to_string(&path).expect("Failed to read data file");
+fn solve(fp: &Path) -> String {
+    let text = std::fs::read_to_string(&fp).expect("Failed to read data file");
     let grid: Grid<char> = Grid::from_string(&text);
 
     // Find all contiguous numbers in each row
@@ -50,7 +46,10 @@ fn main() {
             answer += numbers[0].value() * numbers[1].value();
         }
     }
+    answer.to_string()
+}
 
-    println!("Answer: {}", answer);
-    println!("Time: {:?}", now.elapsed());
+fn main() {
+    let path = Path::new("./data/day03.txt");
+    run_and_time(solve, path)
 }

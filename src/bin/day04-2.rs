@@ -1,17 +1,14 @@
-use aoc_2023::utils::day04::Card;
+use aoc_2023::rust::day04::Card;
+use aoc_2023::utils::run_and_time;
 use std::collections::HashMap;
-use std::time::Instant;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
     path::Path,
 };
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day04.txt");
-    println!("Reading data from: {:?}", &path);
-    let file = File::open(&path).expect("Failed to open data file");
+fn solve(fp: &Path) -> String {
+    let file = File::open(&fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -33,6 +30,10 @@ fn main() {
         }
     }
     let answer = counts.values().into_iter().sum::<i32>();
-    println!("Answer: {}", answer);
-    println!("Time: {:?}", now.elapsed());
+    answer.to_string()
+}
+
+fn main() {
+    let path = Path::new("./data/day04.txt");
+    run_and_time(solve, path)
 }

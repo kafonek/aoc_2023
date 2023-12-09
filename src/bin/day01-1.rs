@@ -4,19 +4,16 @@ https://adventofcode.com/2023/day/1 part one
  - combine those to make a two-digit integer (if there's only one digit, use it twice)
  - sum all the two-digit integers
 */
+use aoc_2023::utils::run_and_time;
 use regex::Regex;
-use std::time::Instant;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
     path::Path,
 };
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day01.txt");
-    println!("Reading data from: {:?}", &path);
-    let file = File::open(&path).expect("Failed to open data file");
+fn solve(fp: &Path) -> String {
+    let file = File::open(&fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -45,6 +42,10 @@ fn main() {
         .collect::<Vec<i32>>();
 
     let sum = combines_n.iter().sum::<i32>();
-    println!("Answer: {}", sum);
-    println!("Time: {:?}", now.elapsed());
+    sum.to_string()
+}
+
+fn main() {
+    let fp = Path::new("data/day01.txt");
+    run_and_time(solve, fp)
 }

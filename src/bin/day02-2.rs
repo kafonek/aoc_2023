@@ -4,19 +4,16 @@ https://adventofcode.com/2023/day/2 part two
  - Create "power" value for each game by multiplying max red, green, blue values
  - Sum all "power" values
 */
-use aoc_2023::utils::day02::Game;
-use std::time::Instant;
+use aoc_2023::rust::day02::Game;
+use aoc_2023::utils::run_and_time;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
     path::Path,
 };
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day02.txt");
-    println!("Reading data from: {:?}", &path);
-    let file = File::open(&path).expect("Failed to open data file");
+fn solve(fp: &Path) -> String {
+    let file = File::open(&fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -26,11 +23,15 @@ fn main() {
         games.push(game);
     }
 
-    let mut power_sum = 0;
+    let mut answer = 0;
     for game in &games {
-        power_sum += game.max_values().power();
+        answer += game.max_values().power();
     }
 
-    println!("Answer: {}", power_sum);
-    println!("Time: {:?}", now.elapsed());
+    answer.to_string()
+}
+
+fn main() {
+    let fp = Path::new("data/day02.txt");
+    run_and_time(solve, fp)
 }

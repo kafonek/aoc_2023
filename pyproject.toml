@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "aoc-2023"
 version = "0.1.0"
-description = ""
-authors = ["Kafonek <matt.kafonek@noteable.io>"]
+description = "Advent of Code 2023 solutions in Python and Rust"
+authors = ["Matt Kafonek <kafonek@gmail.com>"]
 readme = "README.md"
-packages = []
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,3 +19,7 @@ gridthings = {git = "https://github.com/kafonek/gridthings", branch = "mrk/cell-
 [build-system]
 requires = ["maturin"]
 build-backend = "maturin"
+
+[tool.maturin]
+python-source = "python"
+module-name = "aoc_2023"

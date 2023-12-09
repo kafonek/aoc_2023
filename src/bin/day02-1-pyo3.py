@@ -1,0 +1,25 @@
+from pathlib import Path
+
+from aoc_2023.pyo3.day02 import Bag, Game
+from aoc_2023.utils import run_and_time
+
+
+def solve(fp: Path) -> str:
+    lines = fp.read_text().splitlines()
+
+    max_bag = Bag(red=12, green=13, blue=14)
+
+    games = []
+    for line in lines:
+        game = Game.from_string(line)
+        games.append(game)
+
+    answer = 0        
+    for game in games:
+        if game.check(max_bag):
+            answer += game.id
+    return str(answer)
+
+if __name__ == "__main__":
+    fp = Path("data/day02.txt")
+    run_and_time(solve, fp)            

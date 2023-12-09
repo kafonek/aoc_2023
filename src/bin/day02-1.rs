@@ -4,19 +4,16 @@ https://adventofcode.com/2023/day/2 part one
  - for each game id in the dataset, see if all bags in the game can fit into the max bag
  - sum up game ids that fit the max bag criteria
 */
-use aoc_2023::utils::day02::{Bag, Game};
-use std::time::Instant;
+use aoc_2023::rust::day02::{Bag, Game};
+use aoc_2023::utils::run_and_time;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
     path::Path,
 };
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day02.txt");
-    println!("Reading data from: {:?}", &path);
-    let file = File::open(&path).expect("Failed to open data file");
+fn solve(fp: &Path) -> String {
+    let file = File::open(&fp).expect("Failed to open data file");
     let reader = BufReader::new(file);
     let lines: Vec<String> = reader.lines().map(|l| l.unwrap()).collect();
 
@@ -28,13 +25,17 @@ fn main() {
         games.push(game);
     }
 
-    let mut id_sum = 0;
+    let mut answer = 0;
     for game in &games {
         if game.check(&max_bag) {
-            id_sum += &game.id
+            answer += &game.id
         }
     }
 
-    println!("Answer: {}", id_sum);
-    println!("Time: {:?}", now.elapsed());
+    answer.to_string()
+}
+
+fn main() {
+    let fp = Path::new("data/day02.txt");
+    run_and_time(solve, fp)
 }

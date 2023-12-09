@@ -4,18 +4,14 @@ https://adventofcode.com/2023/day/3 part one
  - identify which ones are touching a symbol (non-digit, non-. value)
  - sum all those numbers
 */
-use aoc_2023::utils::day03::Number;
+use aoc_2023::rust::day03::Number;
+use aoc_2023::utils::run_and_time;
 use gridthings::{Grid, GridFromString};
 
 use std::path::Path;
-use std::time::Instant;
 
-fn main() {
-    let now = Instant::now();
-    let path = Path::new("./data/day03.txt");
-    println!("Reading data from: {:?}", &path);
-
-    let text = std::fs::read_to_string(&path).expect("Failed to read data file");
+fn solve(fp: &Path) -> String {
+    let text = std::fs::read_to_string(&fp).expect("Failed to read data file");
     let grid: Grid<char> = Grid::from_string(&text);
 
     // Find all contiguous numbers in each row
@@ -42,6 +38,10 @@ fn main() {
             answer += number.value();
         }
     }
-    println!("Answer: {}", answer);
-    println!("Time: {:?}", now.elapsed());
+    answer.to_string()
+}
+
+fn main() {
+    let path = Path::new("data/day03.txt");
+    run_and_time(solve, path)
 }
