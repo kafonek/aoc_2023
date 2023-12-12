@@ -13,7 +13,8 @@ notebook = "^7.0.6"
 ipython = "^8.18.1"
 ipykernel = "^6.27.1"
 maturin = "^1.4.0"
-gridthings = {git = "https://github.com/kafonek/gridthings", branch = "mrk/cell-hashable"}
+gridthings = {path = "../gridthings", develop = true}
+pandas = "^2.1.4"
 
 
 [tool.poetry.group.dev.dependencies]
