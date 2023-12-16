@@ -15,6 +15,7 @@ ipykernel = "^6.27.1"
 maturin = "^1.4.0"
 gridthings = {path = "../gridthings", develop = true}
 pandas = "^2.1.4"
+tqdm = "^4.66.1"
 
 
 [tool.poetry.group.dev.dependencies]
