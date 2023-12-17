@@ -1,19 +1,8 @@
-[package]
-name = "aoc_2023"
-version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-# from https://pyo3.rs/v0.20.0/#usage. Note that rlib and cdylib both need to be specified,
-# the former makes our crate importable in src/bin/ files while cdylib tells the compiler to
-# create the .so file for Python to import from
-[lib]
-name = "aoc_2023"
-crate-type = ["rlib", "cdylib"]
-
-
-[dependencies]
-pyo3 = { version = "0.20.0", features = ["extension-module"] }
-rayon = "1.8.0"
-regex = "1.10.2"
+[workspace]
+members = [
+    "rust",
+    "rust-pyo3",
+    "rust-wasm",
+    # Add other Rust projects here
+]
+resolver = "2"

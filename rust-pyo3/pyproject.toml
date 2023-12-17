@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "rust-pyo3"
+version = "0.1.0"
+description = ""
+authors = ["Matt Kafonek <kafonek@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+maturin = "^1.4.0"
+aoc_2023 = {path = "../python", develop = true}
+
+
+[build-system]
+requires = ["maturin"]
+build-backend = "maturin"
+
+[tool.maturin]
+module-name = "aoc_2023_pyo3"
