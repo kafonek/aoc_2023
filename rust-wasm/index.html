@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Solver</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #textarea {
+            width: 80%;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        #solver-options {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script type="module">
+        import init, { solve_01_1, solve_01_2 } from './pkg/aoc_2023_wasm.js';
+
+        async function runWasm() {
+            await init();
+            document.getElementById('submit').addEventListener('click', () => {
+                const textarea = document.getElementById('textarea').value;
+                const solver = document.querySelector('input[name="solver"]:checked').value;
+                let result;
+                if (solver === 'solve_01_1') {
+                    result = solve_01_1(textarea);
+                } else {
+                    result = solve_01_2(textarea);
+                }
+                document.getElementById('result').textContent = result;
+            });
+        }
+
+        runWasm();
+    </script>
+</head>
+
+<body>
+    <textarea id="textarea"></textarea>
+    <div id="solver-options">
+        <input type="radio" id="solve_01_1" name="solver" value="solve_01_1" checked>
+        <label for="solve_01_1">Solver 1</label>
+        <input type="radio" id="solve_01_2" name="solver" value="solve_01_2">
+        <label for="solve_01_2">Solver 2</label>
+    </div>
+    <button id="submit">Submit</button>
+    <div id="result"></div>
+</body>
+
+</html>
