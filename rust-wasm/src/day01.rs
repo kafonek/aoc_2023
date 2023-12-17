@@ -1,9 +1,7 @@
 use aoc_2023::day01::Calibration;
-use wasm_bindgen::prelude::*;
 
-#[wasm_bindgen]
-pub fn solve_01_1(textarea: String) -> String {
-    let lines = textarea.lines();
+pub fn part1(input: String) -> String {
+    let lines = input.lines();
 
     let mut answer = 0;
     for line in lines {
@@ -13,9 +11,8 @@ pub fn solve_01_1(textarea: String) -> String {
     answer.to_string()
 }
 
-#[wasm_bindgen]
-pub fn solve_01_2(textarea: String) -> String {
-    let lines = textarea.lines();
+pub fn part2(input: String) -> String {
+    let lines = input.lines();
 
     let mut answer = 0;
     for line in lines {

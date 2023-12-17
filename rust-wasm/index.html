@@ -26,19 +26,17 @@
         }
     </style>
     <script type="module">
-        import init, { solve_01_1, solve_01_2 } from './pkg/aoc_2023_wasm.js';
+        import init, { solve } from './pkg/aoc_2023_wasm.js';
 
         async function runWasm() {
             await init();
             document.getElementById('submit').addEventListener('click', () => {
                 const textarea = document.getElementById('textarea').value;
-                const solver = document.querySelector('input[name="solver"]:checked').value;
-                let result;
-                if (solver === 'solve_01_1') {
-                    result = solve_01_1(textarea);
-                } else {
-                    result = solve_01_2(textarea);
-                }
+                const day = document.getElementById('day-select').value;
+                const part = document.querySelector('input[name="part"]:checked').value;
+                const dayAndPart = `day${day}_${part}`;
+
+                const result = solve(textarea, dayAndPart);
                 document.getElementById('result').textContent = result;
             });
         }
@@ -50,10 +48,14 @@
 <body>
     <textarea id="textarea"></textarea>
     <div id="solver-options">
-        <input type="radio" id="solve_01_1" name="solver" value="solve_01_1" checked>
-        <label for="solve_01_1">Solver 1</label>
-        <input type="radio" id="solve_01_2" name="solver" value="solve_01_2">
-        <label for="solve_01_2">Solver 2</label>
+        <select id="day-select">
+            <option value="01">Day 1</option>
+            <!-- Add more options for other days -->
+        </select>
+        <input type="radio" id="part1" name="part" value="part1" checked>
+        <label for="part1">Part 1</label>
+        <input type="radio" id="part2" name="part" value="part2">
+        <label for="part2">Part 2</label>
     </div>
     <button id="submit">Submit</button>
     <div id="result"></div>
