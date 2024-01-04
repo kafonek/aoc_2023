@@ -1,5 +1,6 @@
 mod day01;
 mod day02;
+mod day04;
 use pyo3::prelude::*;
 
 #[pymodule]
@@ -18,6 +19,12 @@ fn aoc_2023_pyo3(py: Python, m: &PyModule) -> PyResult<()> {
         .getattr("modules")?
         .set_item("aoc_2023_pyo3.day02", day02)?;
     m.add_submodule(day02)?;
+
+    let day04 = PyModule::new(py, "day04")?;
+    day04.add_class::<day04::PyCard>()?;
+    py.import("sys")?
+        .getattr("modules")?
+        .set_item("aoc_2023_pyo3.day04", day04)?;
 
     Ok(())
 }
