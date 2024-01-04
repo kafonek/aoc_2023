@@ -1,4 +1,5 @@
-use std::{collections::HashMap, ops::Range};
+use std::collections::HashMap;
+use std::ops::Range;
 
 use aoc_2023::day05::Pipeline;
 
