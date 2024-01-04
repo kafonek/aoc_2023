@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+
 use std::ops::Range;
 
 use aoc_2023::day05::Pipeline;
@@ -51,7 +51,7 @@ pub fn part2(input: String) -> String {
     println!("Total number of items in flattened ranges: {}", total_items);
 
     // no rayon in wasm. Iterate through everything without parallelization
-    let flattened = input_ranges.into_iter().flat_map(|r| r);
+    let flattened = input_ranges.into_iter().flatten();
     let answer = flattened
         .into_iter()
         .map(|seed| pipeline.get(seed, false))

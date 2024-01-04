@@ -34,7 +34,7 @@ impl Calibration {
     }
 
     pub fn value(&self) -> i32 {
-        let digits: Vec<char> = self.raw.chars().filter(|c| c.is_digit(10)).collect();
+        let digits: Vec<char> = self.raw.chars().filter(|c| c.is_ascii_digit()).collect();
         let first = digits.first().unwrap();
         let last = digits.last().unwrap();
         let combined = format!("{}{}", first, last);

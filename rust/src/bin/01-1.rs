@@ -19,5 +19,5 @@ fn solve(fp: &Path) -> String {
 
 fn main() {
     let path = Path::new("../data/day01.txt");
-    run_and_time(solve, &path);
+    run_and_time(solve, path);
 }
