@@ -2,16 +2,9 @@ name: Build Rust WASM page and Deploy to GitHub Pages
 
 on:
   push:
-    paths:
-      - 'rust-wasm/**'
-  pull_request:
-    paths:
-      - 'rust-wasm/**'
-
-concurrency:
-  group: wasm-page-${{ github.ref }}
-  cancel-in-progress: true      
-
+    branches:
+      - main
+      
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
