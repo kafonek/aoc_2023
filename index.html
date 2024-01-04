@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Solver</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #textarea {
+            width: 80%;
+            height: 300px;
+            margin: 20px auto;
+        }
+
+        #solver-options {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script type="module">
+        import init, { solve } from './pkg/aoc_2023_wasm.js';
+
+        async function runWasm() {
+            await init();
+            document.getElementById('submit').addEventListener('click', () => {
+                const textarea = document.getElementById('textarea').value;
+                const day = document.getElementById('day-select').value;
+                const part = document.querySelector('input[name="part"]:checked').value;
+                const dayAndPart = `day${day}_${part}`;
+
+                const result = solve(textarea, dayAndPart);
+                document.getElementById('result').textContent = result;
+            });
+        }
+
+        runWasm();
+    </script>
+</head>
+
+<body>
+    <textarea id="textarea"></textarea>
+    <div id="solver-options">
+        <select id="day-select">
+            <option value="01">Day 1</option>
+            <option value="02">Day 2</option>
+            <!-- Add more options for other days -->
+        </select>
+        <input type="radio" id="part1" name="part" value="part1" checked>
+        <label for="part1">Part 1</label>
+        <input type="radio" id="part2" name="part" value="part2">
+        <label for="part2">Part 2</label>
+    </div>
+    <button id="submit">Submit</button>
+    <div id="result"></div>
+</body>
+
+</html>
