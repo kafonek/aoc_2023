@@ -1,4 +1,3 @@
-
 use std::ops::Range;
 
 use aoc_2023::day05::Pipeline;

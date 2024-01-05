@@ -1,5 +1,6 @@
 use aoc_2023::day07::Hand;
-use pyo3::{prelude::*, pyclass::CompareOp};
+use pyo3::prelude::*;
+use pyo3::pyclass::CompareOp;
 
 #[pyclass(name = "Hand")]
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
