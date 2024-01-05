@@ -24,7 +24,7 @@ pub fn part2(input: String) -> String {
 
     let mut hands: Vec<Hand> = Vec::new();
     for line in lines {
-        if let Some(hand) = Hand::from_string(line.replace("J", "X").to_string()) {
+        if let Some(hand) = Hand::from_string(line.replace('J', "X").to_string()) {
             hands.push(hand);
         }
     }

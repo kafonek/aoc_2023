@@ -97,7 +97,7 @@ impl Hand {
         let card_symbols = parts.next()?;
         let bid = parts.next()?.parse().ok()?;
 
-        let cards: Vec<Card> = card_symbols.chars().map(|c| Card::from_char(c)).collect();
+        let cards: Vec<Card> = card_symbols.chars().map(Card::from_char).collect();
 
         if cards.len() != 5 {
             println!("Invalid hand: {:?}", cards);

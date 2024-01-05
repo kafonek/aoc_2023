@@ -6,7 +6,7 @@ pub fn part1(input: String) -> String {
 
     // Python equivalent: times = lines[0].split(":")[1].split()
     let times: Vec<usize> = lines[0]
-        .split_once(":")
+        .split_once(':')
         .unwrap()
         .1
         .split_whitespace()

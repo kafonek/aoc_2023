@@ -11,7 +11,7 @@ fn solve(fp: &Path) -> String {
         .lines()
         .map(|l| {
             let line = l.unwrap();
-            line.replace("J", "X")
+            line.replace('J', "X")
         })
         .collect();
 
