@@ -11,6 +11,7 @@ jupyter = "^1.0.0"
 notebook = "^7.0.6"
 lab = "^8.0"
 aoc_2023 = {path = "../python", develop = true}
+aoc_2023_pyo3 = {path = "../rust-pyo3", develop = true}
 
 
 [build-system]

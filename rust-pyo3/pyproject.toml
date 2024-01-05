@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rust-pyo3"
+name = "aoc_2023_pyo3"
 version = "0.1.0"
 description = ""
 authors = ["Matt Kafonek <kafonek@gmail.com>"]
