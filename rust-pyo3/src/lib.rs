@@ -3,6 +3,7 @@ mod day02;
 mod day04;
 mod day05;
 mod day06;
+mod day07;
 use pyo3::prelude::*;
 
 #[pymodule]
@@ -39,6 +40,12 @@ fn aoc_2023_pyo3(py: Python, m: &PyModule) -> PyResult<()> {
     py.import("sys")?
         .getattr("modules")?
         .set_item("aoc_2023_pyo3.day06", day06)?;
+
+    let day07 = PyModule::new(py, "day07")?;
+    day07.add_class::<day07::PyHand>()?;
+    py.import("sys")?
+        .getattr("modules")?
+        .set_item("aoc_2023_pyo3.day07", day07)?;
 
     Ok(())
 }
