@@ -2,6 +2,7 @@ mod day01;
 mod day02;
 mod day04;
 mod day05;
+mod day06;
 use instant::Instant;
 use wasm_bindgen::prelude::*;
 use web_sys::console;
@@ -20,6 +21,8 @@ pub fn solve(textarea: String, day_and_part: String) -> String {
         "day04_part2" => day04::part2(textarea),
         "day05_part1" => day05::part1(textarea),
         "day05_part2" => day05::part2(textarea),
+        "day06_part1" => day06::part1(textarea),
+        "day06_part2" => day06::part2(textarea),
         _ => "Not implemented".to_string(),
     };
     let elapsed = start.elapsed();

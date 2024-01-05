@@ -1,0 +1,6 @@
+class Race:
+    time: int
+    distance_to_beat: int
+
+    def __init__(self, time: int, distance_to_beat: int) -> None: ...
+    def run(self) -> int: ...
